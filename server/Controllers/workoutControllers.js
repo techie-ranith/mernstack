@@ -1,4 +1,3 @@
-const express = require('express')
 const Workout = require("../models/Workout")
 const mongoose = require('mongoose')
 
@@ -6,7 +5,7 @@ const mongoose = require('mongoose')
 // get all workouts
 const getWorkouts = async (req, res) => {
     try {
-        const workouts = await Workout.find();
+        const workouts = await Workout.find({}).sort({createdAt: -1});
         res.status(200).json({ workouts });
     } catch (error) {
         res.status(500).json({ error: error.message });
